@@ -8,21 +8,26 @@
   </head>
   <body>
     <nav class="nav">
-      <a class="brand" href="#top" aria-label="SkillBridge home">
+      <a class="brand" href="#home" aria-label="SkillBridge home">
         <span class="brand-mark">S</span>
         <span>SkillBridge</span>
       </a>
       <div class="nav-links" aria-label="Primary navigation">
-        <a href="#projects">Projects</a>
-        <a href="#platform">Platform</a>
-        <a href="#impact">Impact</a>
-        <a href="#pricing">Pricing</a>
+        <a href="#home"><span class="nav-icon">Home</span> Main</a>
+        <a href="#account"><span class="nav-icon">User</span> Account</a>
+        <a href="#post-job"><span class="nav-icon">Post</span> Post job</a>
+        <a href="#jobs"><span class="nav-icon">Jobs</span> Listings</a>
       </div>
-      <a class="nav-cta" href="#demo">Request pilot <span aria-hidden="true">&gt;</span></a>
+      <span class="auth-status" id="authStatus">Signed out</span>
+      <a class="nav-cta" href="#post-job"><span class="icon">Post</span> Create listing</a>
     </nav>
+    <div class="mobile-action-bar">
+      <a class="primary-button" href="#post-job"><span class="icon">Post</span> Create listing</a>
+      <a class="secondary-action" href="#jobs"><span class="icon">Search</span> Browse jobs</a>
+    </div>
 
     <main>
-      <section id="top" class="hero">
+      <section id="home" class="hero page" data-page="home">
         <img class="hero-image" src="public/skillbridge-hero.png" alt="" />
         <div class="hero-overlay"></div>
         <div class="hero-content">
@@ -34,40 +39,225 @@
             outcomes.
           </p>
           <div class="hero-actions">
-            <a class="primary-button" href="#projects"><span class="icon">Q</span> Browse projects</a>
-            <a class="secondary-button" href="#platform"><span class="icon">P</span> See workflow</a>
+            <a class="primary-button" href="#jobs"><span class="icon">Search</span> Browse jobs</a>
+            <a class="secondary-button" href="#post-job"><span class="icon">Post</span> Post a job</a>
           </div>
         </div>
       </section>
 
-      <section class="metrics" aria-label="Platform metrics">
+      <section class="metrics page" data-page="home" aria-label="Platform metrics">
         <div class="metric"><strong>4 weeks</strong><span>fixed project duration</span></div>
         <div class="metric"><strong>5-15</strong><span>hours per week</span></div>
         <div class="metric"><strong>92%</strong><span>pilot completion target</span></div>
         <div class="metric"><strong>3x</strong><span>faster than intern hiring</span></div>
       </section>
 
-      <section id="projects" class="section project-section">
+      <section id="account" class="section account-section page" data-page="account">
         <div class="section-heading">
-          <p class="eyebrow dark">Marketplace preview</p>
-          <h2>Teen-friendly projects with adult-level clarity.</h2>
+          <p class="eyebrow dark">Account</p>
+          <h2>Sign in as a student or business owner.</h2>
+          <p>
+            Business owners can post listings and review applicants. Students can apply to listings
+            and see notifications when they are selected.
+          </p>
+        </div>
+
+        <div class="account-layout">
+          <form class="portal-form account-card" id="authForm">
+            <ol class="process-steps" aria-label="Account process">
+              <li class="active"><span>1</span> Account</li>
+              <li><span>2</span> Role</li>
+              <li><span>3</span> Start</li>
+            </ol>
+            <div class="panel-title">
+              <div>
+                <p class="eyebrow dark">Supabase auth</p>
+                <h3>Create account or sign in</h3>
+              </div>
+              <span class="fee-pill" id="authModeLabel">Sign up</span>
+            </div>
+            <div class="form-row">
+              <label>Email<input name="email" type="email" required autocomplete="email" placeholder="you@example.com" /></label>
+              <label>Password<input name="password" type="password" required minlength="6" autocomplete="current-password" placeholder="6+ characters" /></label>
+            </div>
+            <fieldset class="choice-group">
+              <legend>Account type</legend>
+              <label class="choice-card"><input type="radio" name="role" value="student" checked /> <span class="icon">User</span> Student</label>
+              <label class="choice-card"><input type="radio" name="role" value="business" /> <span class="icon">Biz</span> Business owner</label>
+            </fieldset>
+            <div class="form-row one">
+              <label>Display name<input name="display_name" autocomplete="name" placeholder="Jordan Lee" /></label>
+            </div>
+            <div class="auth-actions">
+              <button class="primary-button form-button" type="submit" data-auth-action="signup"><span class="icon">User</span> Create account</button>
+              <button class="secondary-action" type="button" id="signInButton">Sign in</button>
+            </div>
+          </form>
+
+          <aside class="account-card profile-card">
+            <div class="panel-title">
+              <div>
+                <p class="eyebrow dark">Current session</p>
+                <h3 id="profileTitle">No one is signed in</h3>
+              </div>
+              <button class="mini-button" type="button" id="signOutButton" hidden>Sign out</button>
+            </div>
+            <p id="profileDetails">
+              Create an account first. Then use the student or business pages with real Supabase
+              permissions.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="jobs" class="section project-section page" data-page="jobs">
+        <div class="section-heading">
+          <p class="eyebrow dark">Job listings</p>
+          <h2>Browse open micro-apprenticeships.</h2>
           <p>
             Filter real 4-week opportunities by category. Every listing includes pay, estimated
             hours, deliverables, skills, mentor ownership, and a final portfolio submission.
           </p>
+          <p class="auth-hint" id="jobsAuthHint">Sign in as a student before applying.</p>
         </div>
 
         <div class="filter-bar" aria-label="Project filters">
-          <button class="filter active" data-filter="all">All</button>
-          <button class="filter" data-filter="creative">Creative</button>
-          <button class="filter" data-filter="tech">Tech</button>
-          <button class="filter" data-filter="ops">Operations</button>
+          <button class="filter active" data-filter="all"><span class="icon">All</span> All</button>
+          <button class="filter" data-filter="creative"><span class="icon">Art</span> Creative</button>
+          <button class="filter" data-filter="tech"><span class="icon">Tech</span> Tech</button>
+          <button class="filter" data-filter="ops"><span class="icon">Ops</span> Operations</button>
         </div>
 
         <div class="project-grid" id="projectGrid"></div>
+
+        <div class="listings-apply-panel">
+          <ol class="process-steps" aria-label="Application process">
+            <li class="active"><span>1</span> Pick job</li>
+            <li><span>2</span> Resume</li>
+            <li><span>3</span> Apply</li>
+          </ol>
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow dark">Student applications</p>
+              <h3>Apply with a mini resume</h3>
+            </div>
+            <span class="fee-pill">$5 hired fee</span>
+          </div>
+
+          <div class="student-layout">
+            <div>
+              <h3>Open listings</h3>
+              <div id="liveListings" class="stack-list"></div>
+            </div>
+
+            <form class="portal-form" id="applicationForm">
+              <input type="hidden" name="listing_id" id="applicationListingId" />
+              <label>Selected listing<input id="selectedListingTitle" disabled value="Choose a listing" /></label>
+              <div class="form-row">
+                <label>Student name<input name="student_name" required placeholder="Jordan Lee" /></label>
+                <label>Email<input name="student_email" type="email" required placeholder="student@example.com" /></label>
+              </div>
+              <div class="form-row">
+                <label>School<input name="school" required placeholder="Central High School" /></label>
+                <label>Availability<input name="availability" required placeholder="Mon/Wed evenings" /></label>
+              </div>
+              <fieldset class="choice-group">
+                <legend>Skills</legend>
+                <label class="choice-card"><input type="checkbox" name="skills" value="Design" /> Design</label>
+                <label class="choice-card"><input type="checkbox" name="skills" value="Video" /> Video</label>
+                <label class="choice-card"><input type="checkbox" name="skills" value="Writing" /> Writing</label>
+                <label class="choice-card"><input type="checkbox" name="skills" value="Sheets" /> Sheets</label>
+                <label class="choice-card"><input type="checkbox" name="skills" value="AI" /> AI</label>
+              </fieldset>
+              <label>Portfolio link<input name="portfolio_url" type="url" inputmode="url" placeholder="https://your-work.com" /></label>
+              <label>Mini resume<textarea name="resume" required placeholder="Share your experience, projects, certifications, and why you are a good fit."></textarea></label>
+              <button class="primary-button form-button" type="submit"><span class="icon">Send</span> Submit application</button>
+            </form>
+          </div>
+
+          <div class="notification-box" id="notificationBox">
+            Student notifications will appear here after a business owner selects an applicant.
+          </div>
+        </div>
       </section>
 
-      <section id="platform" class="section platform-section">
+      <section id="post-job" class="section app-section page" data-page="post-job">
+        <div class="section-heading">
+          <p class="eyebrow dark">Business owner page</p>
+          <h2>Create a job listing and review student applicants.</h2>
+          <p>
+            Connect Supabase to store listings, student applications, hiring decisions, fee status,
+            and notifications. Without credentials, this runs in local demo mode.
+          </p>
+          <p class="auth-hint" id="businessAuthHint">Sign in as a business owner before posting or hiring.</p>
+        </div>
+
+        <div class="app-layout">
+          <section class="portal-panel active" id="businessPanel" aria-label="Business owner portal">
+            <ol class="process-steps" aria-label="Listing process">
+              <li class="active"><span>1</span> Business</li>
+              <li><span>2</span> Project</li>
+              <li><span>3</span> Review</li>
+            </ol>
+            <div class="panel-title">
+              <div>
+                <p class="eyebrow dark">Business portal</p>
+                <h3>Create a job listing</h3>
+              </div>
+              <span class="fee-pill">$19 listing fee</span>
+            </div>
+
+            <form class="portal-form" id="listingForm">
+              <div class="form-row">
+                <label>Business name<input name="business_name" required placeholder="Maple Street Salon" /></label>
+                <label>Email<input name="business_email" type="email" required placeholder="owner@example.com" /></label>
+              </div>
+              <div class="form-row">
+                <label>Phone number<input name="business_phone" required inputmode="tel" placeholder="(555) 014-8000" /></label>
+                <label>Location<input name="location" required placeholder="Toronto, ON" /></label>
+              </div>
+              <div class="form-row">
+                <label>Project title<input name="title" required placeholder="Build appointment reminder workflow" /></label>
+                <label>Pay<input name="pay" required placeholder="$500 fixed" /></label>
+              </div>
+              <div class="form-row">
+                <label>Estimated hours<input name="hours" required placeholder="8 hrs/week" /></label>
+                <fieldset class="choice-group compact">
+                  <legend>Category</legend>
+                  <label class="choice-card"><input type="radio" name="category" value="creative" checked /> Creative</label>
+                  <label class="choice-card"><input type="radio" name="category" value="tech" /> Tech</label>
+                  <label class="choice-card"><input type="radio" name="category" value="ops" /> Ops</label>
+                </fieldset>
+              </div>
+              <fieldset class="choice-group">
+                <legend>Required skills</legend>
+                <label class="choice-card"><input type="checkbox" name="skills" value="AI automation" /> AI automation</label>
+                <label class="choice-card"><input type="checkbox" name="skills" value="Design" /> Design</label>
+                <label class="choice-card"><input type="checkbox" name="skills" value="Email" /> Email</label>
+                <label class="choice-card"><input type="checkbox" name="skills" value="Spreadsheets" /> Spreadsheets</label>
+                <label class="choice-card"><input type="checkbox" name="skills" value="Social media" /> Social media</label>
+              </fieldset>
+              <label>Project description<textarea name="description" required placeholder="Describe deliverables, weekly milestones, and what success looks like."></textarea></label>
+              <button class="primary-button form-button" type="submit"><span class="icon">Post</span> Post listing</button>
+            </form>
+
+            <div class="owner-dashboard">
+              <div class="panel-title small">
+                <h3>Applications received</h3>
+                <span id="ownerStatus">Demo mode</span>
+              </div>
+              <div id="applicationsList" class="stack-list"></div>
+            </div>
+          </section>
+        </div>
+
+        <div class="setup-note">
+          <strong>Supabase setup:</strong> add your project URL and anon key in <code>app.js</code>,
+          then run <code>supabase-schema.sql</code> in the Supabase SQL editor.
+        </div>
+      </section>
+
+      <section id="platform" class="section platform-section page" data-page="home">
         <div class="workflow">
           <div class="section-heading compact">
             <p class="eyebrow dark">Operating system</p>
@@ -101,7 +291,7 @@
         </aside>
       </section>
 
-      <section class="section audiences">
+      <section class="section audiences page" data-page="home">
         <article class="audience-card">
           <span class="card-icon">ST</span>
           <h3>Students</h3>
@@ -122,7 +312,7 @@
         </article>
       </section>
 
-      <section id="impact" class="section impact-section">
+      <section id="impact" class="section impact-section page" data-page="home">
         <div>
           <p class="eyebrow">Grant and workforce ready</p>
           <h2>Designed for measurable youth employment outcomes.</h2>
@@ -139,7 +329,7 @@
         </div>
       </section>
 
-      <section id="pricing" class="section pricing-section">
+      <section id="pricing" class="section pricing-section page" data-page="home">
         <div class="section-heading compact">
           <p class="eyebrow dark">B2B SaaS model</p>
           <h2>Simple plans for businesses, schools, and regional partners.</h2>
@@ -151,7 +341,7 @@
         </div>
       </section>
 
-      <section id="demo" class="cta-band">
+      <section id="demo" class="cta-band page" data-page="home">
         <span class="cta-icon">SB</span>
         <div>
           <h2>Launch a local pilot with 50 businesses and 100 students.</h2>
@@ -164,6 +354,7 @@
       </section>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="app.js"></script>
   </body>
 </html>
