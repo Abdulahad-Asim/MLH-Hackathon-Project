@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SkillBridge | Micro-Apprenticeships</title>
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <a class="brand" href="#top" aria-label="SkillBridge home">
+        <span class="brand-mark">S</span>
+        <span>SkillBridge</span>
+      </a>
+      <div class="nav-links" aria-label="Primary navigation">
+        <a href="#projects">Projects</a>
+        <a href="#platform">Platform</a>
+        <a href="#impact">Impact</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+      <a class="nav-cta" href="#demo">Request pilot <span aria-hidden="true">&gt;</span></a>
+    </nav>
+
+    <main>
+      <section id="top" class="hero">
+        <img class="hero-image" src="public/skillbridge-hero.png" alt="" />
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Paid micro-apprenticeships for ages 14-18</p>
+          <h1>Real Work. Real Experience. Real Future.</h1>
+          <p class="hero-copy">
+            SkillBridge connects high school students with 4-week paid projects at local small
+            businesses, backed by AI matching, school verification, mentor tools, and portfolio
+            outcomes.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#projects"><span class="icon">Q</span> Browse projects</a>
+            <a class="secondary-button" href="#platform"><span class="icon">P</span> See workflow</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Platform metrics">
+        <div class="metric"><strong>4 weeks</strong><span>fixed project duration</span></div>
+        <div class="metric"><strong>5-15</strong><span>hours per week</span></div>
+        <div class="metric"><strong>92%</strong><span>pilot completion target</span></div>
+        <div class="metric"><strong>3x</strong><span>faster than intern hiring</span></div>
+      </section>
+
+      <section id="projects" class="section project-section">
+        <div class="section-heading">
+          <p class="eyebrow dark">Marketplace preview</p>
+          <h2>Teen-friendly projects with adult-level clarity.</h2>
+          <p>
+            Filter real 4-week opportunities by category. Every listing includes pay, estimated
+            hours, deliverables, skills, mentor ownership, and a final portfolio submission.
+          </p>
+        </div>
+
+        <div class="filter-bar" aria-label="Project filters">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="creative">Creative</button>
+          <button class="filter" data-filter="tech">Tech</button>
+          <button class="filter" data-filter="ops">Operations</button>
+        </div>
+
+        <div class="project-grid" id="projectGrid"></div>
+      </section>
+
+      <section id="platform" class="section platform-section">
+        <div class="workflow">
+          <div class="section-heading compact">
+            <p class="eyebrow dark">Operating system</p>
+            <h2>From project brief to verified portfolio in four weeks.</h2>
+          </div>
+          <div class="steps">
+            <div class="step"><span>01</span><div><h3>Scope</h3><p>Businesses choose a project template or create a custom brief with deliverables, pay, hours, and required skills.</p></div></div>
+            <div class="step"><span>02</span><div><h3>Match</h3><p>AI ranks verified students by skill fit, availability, interests, and growth goals.</p></div></div>
+            <div class="step"><span>03</span><div><h3>Deliver</h3><p>Weekly milestones, mentor notes, and payment approvals keep the work moving.</p></div></div>
+            <div class="step"><span>04</span><div><h3>Prove</h3><p>Students submit portfolio evidence and receive a verified performance review.</p></div></div>
+          </div>
+        </div>
+
+        <aside class="dashboard-panel" aria-label="Business dashboard preview">
+          <div class="panel-header">
+            <div>
+              <p>Business dashboard</p>
+              <h3>Project health</h3>
+            </div>
+            <span class="spark">AI</span>
+          </div>
+          <div class="progress-stack">
+            <div class="progress-item" data-value="75"><div><span>Milestones approved</span><strong>75%</strong></div><div class="progress-track"><span></span></div></div>
+            <div class="progress-item" data-value="58"><div><span>Portfolio evidence</span><strong>58%</strong></div><div class="progress-track"><span></span></div></div>
+            <div class="progress-item" data-value="86"><div><span>Mentor feedback</span><strong>86%</strong></div><div class="progress-track"><span></span></div></div>
+          </div>
+          <div class="insight">
+            <span class="icon">AI</span>
+            <p>AI summary: student is ahead on research and needs one mentor review before final campaign handoff.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section audiences">
+        <article class="audience-card">
+          <span class="card-icon">ST</span>
+          <h3>Students</h3>
+          <p>Build a resume before college with paid projects, badges, references, and portfolio proof.</p>
+          <ul><li>Verified reviews</li><li>AI interview prep</li><li>Skill gap roadmap</li></ul>
+        </article>
+        <article class="audience-card">
+          <span class="card-icon">BZ</span>
+          <h3>Small Businesses</h3>
+          <p>Turn practical tasks into affordable, mentored projects without a long hiring process.</p>
+          <ul><li>Project templates</li><li>Payroll support</li><li>Rehire pipeline</li></ul>
+        </article>
+        <article class="audience-card">
+          <span class="card-icon">SC</span>
+          <h3>Schools</h3>
+          <p>Verify students, recommend opportunities, track progress, and report placement outcomes.</p>
+          <ul><li>Credit reporting</li><li>Partner dashboards</li><li>Grant-ready data</li></ul>
+        </article>
+      </section>
+
+      <section id="impact" class="section impact-section">
+        <div>
+          <p class="eyebrow">Grant and workforce ready</p>
+          <h2>Designed for measurable youth employment outcomes.</h2>
+          <p>
+            SkillBridge gives schools, cities, and workforce agencies the reporting layer they need
+            to fund, measure, and scale paid student work experience.
+          </p>
+        </div>
+        <div class="impact-grid">
+          <article class="impact-card"><span>Students</span><strong>1,240</strong><em>placements tracked</em></article>
+          <article class="impact-card"><span>Earnings</span><strong>$486k</strong><em>student earnings projected</em></article>
+          <article class="impact-card"><span>Reports</span><strong>38</strong><em>grant metrics exported</em></article>
+          <article class="impact-card"><span>Trust</span><strong>100%</strong><em>verified school eligibility</em></article>
+        </div>
+      </section>
+
+      <section id="pricing" class="section pricing-section">
+        <div class="section-heading compact">
+          <p class="eyebrow dark">B2B SaaS model</p>
+          <h2>Simple plans for businesses, schools, and regional partners.</h2>
+        </div>
+        <div class="pricing-grid">
+          <article class="plan"><div class="plan-head"><h3>Starter</h3></div><strong>$49</strong><p>For small businesses posting occasional projects.</p><ul><li>2 active projects</li><li>Project templates</li><li>Student chat</li><li>Review tools</li></ul></article>
+          <article class="plan featured"><div class="plan-head"><h3>Growth</h3><span>Popular</span></div><strong>$149</strong><p>For employers building a repeat teen talent pipeline.</p><ul><li>AI candidate matching</li><li>Payroll support</li><li>Mentor dashboard</li><li>Rehire lists</li></ul></article>
+          <article class="plan"><div class="plan-head"><h3>Partner</h3></div><strong>Custom</strong><p>For schools, municipalities, and workforce agencies.</p><ul><li>Student verification</li><li>Placement analytics</li><li>Credit tracking</li><li>Grant reports</li></ul></article>
+        </div>
+      </section>
+
+      <section id="demo" class="cta-band">
+        <span class="cta-icon">SB</span>
+        <div>
+          <h2>Launch a local pilot with 50 businesses and 100 students.</h2>
+          <p>
+            Start with one region, prove placement outcomes, then expand through schools,
+            chambers, and workforce development partners.
+          </p>
+        </div>
+        <a class="primary-button light" href="mailto:pilot@skillbridge.example">Start pilot <span aria-hidden="true">&gt;</span></a>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
