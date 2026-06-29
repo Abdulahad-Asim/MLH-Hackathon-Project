@@ -6,7 +6,10 @@
     <title>SkillBridge | Micro-Apprenticeships</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="app.css" />
   </head>
   <body>
@@ -16,16 +19,16 @@
         <span>SkillBridge</span>
       </a>
       <div class="nav-links" aria-label="Primary navigation">
-        <a href="#home">Main</a>
+        <a href="#home">Home</a>
         <a href="#account">Account</a>
-        <a href="#post-job">Post job</a>
-        <a href="#jobs">Listings</a>
+        <a href="#post-job">Post a job</a>
+        <a href="#jobs">Browse jobs</a>
       </div>
       <span class="auth-status" id="authStatus">Signed out</span>
-      <a class="nav-cta" href="#post-job">Create listing</a>
+      <a class="nav-cta" href="#post-job">Post a job</a>
     </nav>
     <div class="mobile-action-bar">
-      <a class="primary-button" href="#post-job">Create listing</a>
+      <a class="primary-button" href="#post-job">Post a job</a>
       <a class="secondary-action" href="#jobs">Browse jobs</a>
     </div>
 
@@ -38,7 +41,8 @@
           <h1>Real Work. Real Experience. Real Future.</h1>
           <p class="hero-copy">
             SkillBridge connects high school students with 4-week paid projects at local small
-            businesses, backed by school verification, mentor tools, and portfolio outcomes.
+            businesses, backed by AI matching, school verification, mentor tools, and portfolio
+            outcomes.
           </p>
           <div class="hero-actions">
             <a class="primary-button" href="#jobs">Browse jobs</a>
@@ -50,7 +54,7 @@
       <section class="metrics page" data-page="home" aria-label="Platform metrics">
         <div class="metric"><strong>4 weeks</strong><span>fixed project duration</span></div>
         <div class="metric"><strong>5-15</strong><span>hours per week</span></div>
-        <div class="metric"><strong>92%</strong><span>project completion rate</span></div>
+        <div class="metric"><strong>92%</strong><span>pilot completion target</span></div>
         <div class="metric"><strong>3x</strong><span>faster than intern hiring</span></div>
       </section>
 
@@ -73,25 +77,25 @@
             </ol>
             <div class="panel-title">
               <div>
-                <p class="eyebrow dark">Secure account</p>
+                <p class="eyebrow dark">Supabase auth</p>
                 <h3>Create account or sign in</h3>
               </div>
               <span class="fee-pill" id="authModeLabel">Sign up</span>
             </div>
             <div class="form-row">
-              <label>Email<input name="email" type="email" required autocomplete="email" /></label>
+              <label>Email<input name="email" type="email" required autocomplete="email" placeholder="you@example.com" /></label>
               <label>Password<input name="password" type="password" required minlength="6" autocomplete="current-password" placeholder="6+ characters" /></label>
             </div>
             <fieldset class="choice-group">
               <legend>Account type</legend>
-              <label class="choice-card"><input type="radio" name="role" value="student" checked /> <span class="icon">User</span> Student</label>
-              <label class="choice-card"><input type="radio" name="role" value="business" /> <span class="icon">Biz</span> Business owner</label>
+              <label class="choice-card"><input type="radio" name="role" value="student" checked /> Student</label>
+              <label class="choice-card"><input type="radio" name="role" value="business" /> Business owner</label>
             </fieldset>
             <div class="form-row one">
               <label>Display name<input name="display_name" autocomplete="name" placeholder="Jordan Lee" /></label>
             </div>
             <div class="auth-actions">
-              <button class="primary-button form-button" type="submit" data-auth-action="signup"><span class="icon">User</span> Create account</button>
+              <button class="primary-button form-button" type="submit" data-auth-action="signup">Create account</button>
               <button class="secondary-action" type="button" id="signInButton">Sign in</button>
             </div>
           </form>
@@ -105,7 +109,8 @@
               <button class="mini-button" type="button" id="signOutButton" hidden>Sign out</button>
             </div>
             <p id="profileDetails">
-              Create an account first. Then use the student or business pages with secure access.
+              Create an account first. Then use the student or business pages with real Supabase
+              permissions.
             </p>
           </aside>
         </div>
@@ -123,10 +128,10 @@
         </div>
 
         <div class="filter-bar" aria-label="Project filters">
-          <button class="filter active" data-filter="all"><span class="icon">All</span> All</button>
-          <button class="filter" data-filter="creative"><span class="icon">Art</span> Creative</button>
-          <button class="filter" data-filter="tech"><span class="icon">Tech</span> Tech</button>
-          <button class="filter" data-filter="ops"><span class="icon">Ops</span> Operations</button>
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="creative">Creative</button>
+          <button class="filter" data-filter="tech">Tech</button>
+          <button class="filter" data-filter="ops">Operations</button>
         </div>
 
         <div class="project-grid" id="projectGrid"></div>
@@ -156,7 +161,7 @@
               <label>Selected listing<input id="selectedListingTitle" disabled value="Choose a listing" /></label>
               <div class="form-row">
                 <label>Student name<input name="student_name" required placeholder="Jordan Lee" /></label>
-                <label>Email<input name="student_email" type="email" required /></label>
+                <label>Email<input name="student_email" type="email" required placeholder="student@example.com" /></label>
               </div>
               <div class="form-row">
                 <label>School<input name="school" required placeholder="Central High School" /></label>
@@ -168,11 +173,11 @@
                 <label class="choice-card"><input type="checkbox" name="skills" value="Video" /> Video</label>
                 <label class="choice-card"><input type="checkbox" name="skills" value="Writing" /> Writing</label>
                 <label class="choice-card"><input type="checkbox" name="skills" value="Sheets" /> Sheets</label>
-                <label class="choice-card"><input type="checkbox" name="skills" value="Automation" /> Automation</label>
+                <label class="choice-card"><input type="checkbox" name="skills" value="AI" /> AI</label>
               </fieldset>
               <label>Portfolio link<input name="portfolio_url" type="url" inputmode="url" placeholder="https://your-work.com" /></label>
               <label>Mini resume<textarea name="resume" required placeholder="Share your experience, projects, certifications, and why you are a good fit."></textarea></label>
-              <button class="primary-button form-button" type="submit"><span class="icon">Send</span> Submit application</button>
+              <button class="primary-button form-button" type="submit">Submit application</button>
             </form>
           </div>
 
@@ -187,8 +192,8 @@
           <p class="eyebrow dark">Business owner page</p>
           <h2>Create a job listing and review student applicants.</h2>
           <p>
-            Post paid micro-apprenticeships, review student applications, make hiring decisions,
-            and manage placement fees in one place.
+            Connect Supabase to store listings, student applications, hiring decisions, fee status,
+            and notifications. Without credentials, this runs in local demo mode.
           </p>
           <p class="auth-hint" id="businessAuthHint">Sign in as a business owner before posting or hiring.</p>
         </div>
@@ -210,19 +215,19 @@
 
             <form class="portal-form" id="listingForm">
               <div class="form-row">
-                <label>Business name<input name="business_name" required /></label>
-                <label>Email<input name="business_email" type="email" required /></label>
+                <label>Business name<input name="business_name" required placeholder="Your business name" /></label>
+                <label>Email<input name="business_email" type="email" required placeholder="you@yourbusiness.com" /></label>
               </div>
               <div class="form-row">
-                <label>Phone number<input name="business_phone" required inputmode="tel" /></label>
-                <label>Location<input name="location" required /></label>
+                <label>Phone number<input name="business_phone" required inputmode="tel" placeholder="(555) 123-4567" /></label>
+                <label>Location<input name="location" required placeholder="City, Province" /></label>
               </div>
               <div class="form-row">
-                <label>Project title<input name="title" required /></label>
-                <label>Pay<input name="pay" required /></label>
+                <label>Project title<input name="title" required placeholder="What is the project called?" /></label>
+                <label>Pay<input name="pay" required placeholder="e.g. $500 fixed" /></label>
               </div>
               <div class="form-row">
-                <label>Estimated hours<input name="hours" required /></label>
+                <label>Estimated hours<input name="hours" required placeholder="e.g. 8 hrs/week" /></label>
                 <fieldset class="choice-group compact">
                   <legend>Category</legend>
                   <label class="choice-card"><input type="radio" name="category" value="creative" checked /> Creative</label>
@@ -232,7 +237,7 @@
               </div>
               <fieldset class="choice-group">
                 <legend>Required skills</legend>
-                <label class="choice-card"><input type="checkbox" name="skills" value="Workflow automation" /> Workflow automation</label>
+                <label class="choice-card"><input type="checkbox" name="skills" value="AI automation" /> AI automation</label>
                 <label class="choice-card"><input type="checkbox" name="skills" value="Design" /> Design</label>
                 <label class="choice-card"><input type="checkbox" name="skills" value="Email" /> Email</label>
                 <label class="choice-card"><input type="checkbox" name="skills" value="Spreadsheets" /> Spreadsheets</label>
@@ -245,26 +250,25 @@
             <div class="owner-dashboard">
               <div class="panel-title small">
                 <h3>Applications received</h3>
-                <span id="ownerStatus">Ready</span>
+                <span id="ownerStatus">Demo mode</span>
               </div>
               <div id="applicationsList" class="stack-list"></div>
             </div>
           </section>
         </div>
-
       </section>
 
       <section id="platform" class="section platform-section page" data-page="home">
         <div class="workflow">
           <div class="section-heading compact">
             <p class="eyebrow dark">Operating system</p>
-            <h2>From job listing to paid project in four weeks.</h2>
+            <h2>From project brief to verified portfolio in four weeks.</h2>
           </div>
           <div class="steps">
-            <div class="step"><span>01</span><div><h3>Scope</h3><p>Business owners post the role, pay, hours, location, skills, and project details.</p></div></div>
-            <div class="step"><span>02</span><div><h3>Apply</h3><p>Students browse open listings and submit a mini resume with skills, availability, and portfolio work.</p></div></div>
-            <div class="step"><span>03</span><div><h3>Business selects</h3><p>The business reviews applications, chooses the student they want to hire, and sends the selection notice.</p></div></div>
-            <div class="step"><span>04</span><div><h3>Start your job</h3><p>The selected student begins the paid 4-week project and builds real work experience.</p></div></div>
+            <div class="step"><span>01</span><div><h3>Scope</h3><p>Businesses choose a project template or create a custom brief with deliverables, pay, hours, and required skills.</p></div></div>
+            <div class="step"><span>02</span><div><h3>Match</h3><p>AI ranks verified students by skill fit, availability, interests, and growth goals.</p></div></div>
+            <div class="step"><span>03</span><div><h3>Deliver</h3><p>Weekly milestones, mentor notes, and payment approvals keep the work moving.</p></div></div>
+            <div class="step"><span>04</span><div><h3>Prove</h3><p>Students submit portfolio evidence and receive a verified performance review.</p></div></div>
           </div>
         </div>
 
@@ -274,7 +278,7 @@
               <p>Business dashboard</p>
               <h3>Project health</h3>
             </div>
-            <span class="spark">Live</span>
+            <span class="spark">AI</span>
           </div>
           <div class="progress-stack">
             <div class="progress-item" data-value="75"><div><span>Milestones approved</span><strong>75%</strong></div><div class="progress-track"><span></span></div></div>
@@ -282,8 +286,8 @@
             <div class="progress-item" data-value="86"><div><span>Mentor feedback</span><strong>86%</strong></div><div class="progress-track"><span></span></div></div>
           </div>
           <div class="insight">
-            <span class="icon">Note</span>
-            <p>Mentor note: student is ahead on research and needs one review before final campaign handoff.</p>
+            <span class="icon">AI</span>
+            <p>AI summary: student is ahead on research and needs one mentor review before final campaign handoff.</p>
           </div>
         </aside>
       </section>
@@ -293,7 +297,7 @@
           <span class="card-icon">ST</span>
           <h3>Students</h3>
           <p>Build a resume before college with paid projects, badges, references, and portfolio proof.</p>
-          <ul><li>Verified reviews</li><li>Interview prep</li><li>Skill roadmap</li></ul>
+          <ul><li>Verified reviews</li><li>AI interview prep</li><li>Skill gap roadmap</li></ul>
         </article>
         <article class="audience-card">
           <span class="card-icon">BZ</span>
@@ -305,13 +309,13 @@
           <span class="card-icon">SC</span>
           <h3>Schools</h3>
           <p>Verify students, recommend opportunities, track progress, and report placement outcomes.</p>
-          <ul><li>Credit reporting</li><li>Partner dashboards</li><li>Outcome tracking</li></ul>
+          <ul><li>Credit reporting</li><li>Partner dashboards</li><li>Grant-ready data</li></ul>
         </article>
       </section>
 
       <section id="impact" class="section impact-section page" data-page="home">
         <div>
-          <p class="eyebrow">Workforce outcomes</p>
+          <p class="eyebrow">Grant and workforce ready</p>
           <h2>Designed for measurable youth employment outcomes.</h2>
           <p>
             SkillBridge gives schools, cities, and workforce agencies the reporting layer they need
@@ -320,8 +324,8 @@
         </div>
         <div class="impact-grid">
           <article class="impact-card"><span>Students</span><strong>1,240</strong><em>placements tracked</em></article>
-          <article class="impact-card"><span>Earnings</span><strong>$486k</strong><em>student earnings tracked</em></article>
-          <article class="impact-card"><span>Reports</span><strong>38</strong><em>outcome reports exported</em></article>
+          <article class="impact-card"><span>Earnings</span><strong>$486k</strong><em>student earnings projected</em></article>
+          <article class="impact-card"><span>Reports</span><strong>38</strong><em>grant metrics exported</em></article>
           <article class="impact-card"><span>Trust</span><strong>100%</strong><em>verified school eligibility</em></article>
         </div>
       </section>
@@ -333,9 +337,21 @@
         </div>
         <div class="pricing-grid">
           <article class="plan"><div class="plan-head"><h3>Starter</h3></div><strong>$49</strong><p>For small businesses posting occasional projects.</p><ul><li>2 active projects</li><li>Project templates</li><li>Student chat</li><li>Review tools</li></ul></article>
-          <article class="plan featured"><div class="plan-head"><h3>Growth</h3><span>Popular</span></div><strong>$149</strong><p>For employers building a repeat teen talent pipeline.</p><ul><li>Applicant management</li><li>Payroll support</li><li>Mentor dashboard</li><li>Rehire lists</li></ul></article>
-          <article class="plan"><div class="plan-head"><h3>Partner</h3></div><strong>Custom</strong><p>For schools, municipalities, and workforce agencies.</p><ul><li>Student verification</li><li>Placement analytics</li><li>Credit tracking</li><li>Outcome reports</li></ul></article>
+          <article class="plan featured"><div class="plan-head"><h3>Growth</h3><span>Popular</span></div><strong>$149</strong><p>For employers building a repeat teen talent pipeline.</p><ul><li>AI candidate matching</li><li>Payroll support</li><li>Mentor dashboard</li><li>Rehire lists</li></ul></article>
+          <article class="plan"><div class="plan-head"><h3>Partner</h3></div><strong>Custom</strong><p>For schools, municipalities, and workforce agencies.</p><ul><li>Student verification</li><li>Placement analytics</li><li>Credit tracking</li><li>Grant reports</li></ul></article>
         </div>
+      </section>
+
+      <section id="demo" class="cta-band page" data-page="home">
+        <span class="cta-icon">SB</span>
+        <div>
+          <h2>Launch a local pilot with 50 businesses and 100 students.</h2>
+          <p>
+            Start with one region, prove placement outcomes, then expand through schools,
+            chambers, and workforce development partners.
+          </p>
+        </div>
+        <a class="primary-button light" href="mailto:pilot@skillbridge.example">Start pilot <span aria-hidden="true">&gt;</span></a>
       </section>
     </main>
 

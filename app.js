@@ -5,10 +5,10 @@ const STUDENT_HIRED_FEE = 5;
 
 const seedListings = [
   {
-    id: "demo-1",
+    id: "listing-1",
     title: "Launch a 30-day social content calendar",
     business_name: "Northline Fitness Studio",
-    business_email: "owner@northline.example",
+    business_email: "owner@northlinefitness.com",
     business_phone: "555-0101",
     location: "Toronto, ON",
     description: "Create a month of Instagram content, captions, and a posting plan.",
@@ -22,10 +22,10 @@ const seedListings = [
     created_at: new Date().toISOString(),
   },
   {
-    id: "demo-2",
+    id: "listing-2",
     title: "Automate inventory spreadsheet reporting",
     business_name: "The Green Pantry",
-    business_email: "ops@greenpantry.example",
+    business_email: "ops@greenpantry.com",
     business_phone: "555-0144",
     location: "Mississauga, ON",
     description: "Clean up weekly inventory data and build a simple reporting dashboard.",
@@ -39,10 +39,10 @@ const seedListings = [
     created_at: new Date().toISOString(),
   },
   {
-    id: "demo-3",
+    id: "listing-3",
     title: "Film and edit event recap videos",
     business_name: "Harbor Youth Arts",
-    business_email: "events@harboryouth.example",
+    business_email: "events@harboryoutharts.com",
     business_phone: "555-0180",
     location: "Scarborough, ON",
     description: "Capture two youth arts events and deliver three short edited clips.",
@@ -56,10 +56,10 @@ const seedListings = [
     created_at: new Date().toISOString(),
   },
   {
-    id: "demo-4",
+    id: "listing-4",
     title: "Clean up CRM records and customer survey tags",
     business_name: "Cedar Lane Dental",
-    business_email: "admin@cedarlane.example",
+    business_email: "admin@cedarlanedental.com",
     business_phone: "555-0119",
     location: "Brampton, ON",
     description: "Organize contact records and summarize survey themes for the owner.",
@@ -73,13 +73,13 @@ const seedListings = [
     created_at: new Date().toISOString(),
   },
   {
-    id: "demo-5",
+    id: "listing-5",
     title: "Build a simple appointment reminder workflow",
     business_name: "Maple Street Salon",
-    business_email: "hello@maplesalon.example",
+    business_email: "hello@maplestreetsalon.com",
     business_phone: "555-0128",
     location: "Etobicoke, ON",
-    description: "Prototype an email reminder workflow and document how staff can use it.",
+    description: "Build an email reminder workflow and document how staff can use it.",
     pay: "$600 fixed",
     hours: "9 hrs/week",
     skills: ["Automation", "Email", "AI"],
@@ -90,10 +90,10 @@ const seedListings = [
     created_at: new Date().toISOString(),
   },
   {
-    id: "demo-6",
+    id: "listing-6",
     title: "Plan and promote a neighborhood pop-up event",
     business_name: "Oak & Thread Boutique",
-    business_email: "shop@oakthread.example",
+    business_email: "shop@oakandthread.com",
     business_phone: "555-0165",
     location: "Hamilton, ON",
     description: "Help plan vendors, outreach, signage, and social posts for a local event.",
@@ -194,7 +194,7 @@ async function upsertProfile(user, role, displayName) {
   });
 
   if (error) {
-    alert(`Account created, but profile setup failed: ${error.message}`);
+    alert(`Account created, but profile could not be saved: ${error.message}`);
   }
 }
 
@@ -210,12 +210,12 @@ function renderAuthState() {
     ? `${roleLabel}: ${currentUser.email}`
     : supabaseClient
       ? "Signed out"
-      : "Demo mode";
+      : "Offline access";
 
   profileTitle.textContent = signedIn ? `${roleLabel} account` : "No one is signed in";
   profileDetails.textContent = signedIn
     ? `${currentUser.email} is signed in. The app will only show records this account is allowed to access.`
-    : "Create an account first. Then use the student or business pages with real Supabase permissions.";
+    : "Create an account first. Then use the student or business pages with secure access.";
   signOutButton.hidden = !signedIn;
 
   jobsAuthHint.textContent = hasRole("student")
@@ -225,12 +225,6 @@ function renderAuthState() {
     ? "You are signed in as a business owner and can manage your listings."
     : "Sign in as a business owner before posting or hiring.";
 
-  listingForm.querySelectorAll("input, select, textarea, button").forEach((field) => {
-    field.disabled = Boolean(supabaseClient) && !hasRole("business");
-  });
-  applicationForm.querySelectorAll("input, select, textarea, button").forEach((field) => {
-    field.disabled = Boolean(supabaseClient) && !hasRole("student");
-  });
   selectedListingTitle.disabled = true;
 }
 
@@ -283,7 +277,7 @@ async function loadData() {
     const { data: notificationRows = [] } = notificationResult || {};
 
     if (listingError || appError) {
-      setStatus("Supabase error. Check table schema and API keys.");
+      setStatus("Connection needs attention");
       listings = seedListings;
       applications = [];
       notifications = [];
@@ -291,13 +285,13 @@ async function loadData() {
       listings = listingRows.length ? listingRows : seedListings;
       applications = applicationRows || [];
       notifications = notificationRows || [];
-      setStatus(currentUser ? "Supabase connected" : "Sign in required");
+      setStatus(currentUser ? "Ready" : "Sign in required");
     }
   } else {
     listings = readLocal("skillbridge_listings", seedListings);
     applications = readLocal("skillbridge_applications", []);
     notifications = readLocal("skillbridge_notifications", []);
-    setStatus("Demo mode");
+    setStatus("Ready");
   }
 
   renderAll();
